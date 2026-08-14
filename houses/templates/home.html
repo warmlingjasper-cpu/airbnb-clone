@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+
+        <h1>Vou viajar</h1>
+
+        <p class="text-muted">
+            Encontre o lugar perfeito para sua próxima viagem.
+        </p>
+
+    </div>
+
+
+    <form method="GET" class="search-bar mb-5">
+
+        <!-- Onde -->
+
+        <div class="search-item">
+
+            <label>Onde</label>
+
+            <input type="text" name="location" placeholder="Para onde vai?" value="{{ request.GET.location }}">
+
+        </div>
+
+
+        <!-- Quando -->
+
+        <div class="search-item search-dates">
+
+            <label>Quando</label>
+
+            <div class="date-fields">
+                <div class="date-field">
+                    <span>Check-in</span>
+
+                    <input type="date" name="check_in" value="{{ request.GET.check_in }}" min="{{ today }}"
+                        onclick="this.showPicker()">
+                </div>
+
+                <span class="date-arrow">→</span>
+
+                <div class="date-field">
+                    <span>Check-out</span>
+                    <input type="date" name="check_out" value="{{ request.GET.check_out }}" onclick="this.showPicker()">
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Quem -->
+
+        <div class="search-item">
+
+            <label>Quem</label>
+
+            <input type="number" name="guests" min="1" placeholder="Adicionar hóspedes"
+                value="{{ request.GET.guests }}">
+
+        </div>
+
+
+        <!-- Pesquisar -->
+
+        <button type="submit" class="search-button">
+            <i class="bi bi-search"></i>
+        </button>
+
+    </form>
+
+
+    <div class="row">
+
+        {% for house in houses %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+            <a href="{% url 'house_detail' house.id %}" class="text-decoration-none text-dark">
+
+                {% include "components/house_card.html" %}
+
+            </a>
+
+        </div>
+
+        {% empty %}
+
+        <p>Nenhuma casa cadastrada.</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+{% endblock %}

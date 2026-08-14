@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h1 class="mb-0">
+            Welcome!
+        </h1>
+
+        <a href="{% url 'house_create' %}" class="btn btn-airbnb">
+            + Add house
+        </a>
+
+    </div>
+
+
+    <!-- Pesquisa -->
+
+    <form method="GET" class="search-bar mb-5">
+        <!-- Onde -->
+        <div class="search-item">
+            <label>Where</label>
+            <input type="text" name="location" placeholder="Where you go?" value="{{ request.GET.location }}">
+        </div>
+
+        <!-- Quando -->
+        <div class="search-item search-dates">
+            <label>When</label>
+
+            <div class="date-fields">
+
+                <input type="date" name="check-in" value="{{ request.GET.check_in }}">
+
+                <span>-></span>
+
+                <input type="date" name="check-out" value="{{ request.GET.check_out }}">
+
+            </div>
+        </div>
+
+        <!-- Quem -->
+        <div class="search-item">
+            <label>Who</label>
+            <input type="number" name="guest" placeholder="Add guests" value="{{ request.GET.guests }}">
+        </div>
+
+        <!-- Botão -->
+        <button type="submit" class="search-button" aria-label="Search">
+            🔍
+        </button>
+
+    </form>
+
+
+
+    <!-- Casas -->
+
+    <div class="row">
+
+        {% for house in houses %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+            {% include "components/house_card.html" %}
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="text-center py-5">
+
+                <h4>No Houses resgistered</h4>
+
+                <p class="text-muted">
+                    Starting add a new house.
+                </p>
+
+                <a href="{% url 'house_create' %}" class="btn btn-airbnb">
+                    Add first house.
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

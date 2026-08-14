@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Airbnb Clone
+        {% endblock %}
+    </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <!-- TOPO -->
+    <header class="border-bottom">
+
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center py-3">
+
+                <!-- LOGO -->
+                <a class="btn btn-outline-airbnb" href="{% url 'dashboard' %}">
+                    Airbnb Clone
+                </a>
+
+                <!-- USUÁRIO -->
+                <div>
+
+                    {% if request.resolver_match.url_name == "host" %}
+
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-airbnb btn-sm me-3">
+                        <i class="bi bi-airplane"></i>
+                        Vou viajar
+                    </a>
+
+                    {% else %}
+
+                    <a href="{% url 'host' %}" class="btn btn-outline-airbnb btn-sm me-3">
+                        <i class="bi bi-house"></i>
+                        Vou hospedar
+                    </a>
+
+                    {% endif %}
+
+
+                    {% if user.is_authenticated %}
+
+                    <span class="me-3">
+                        Olá, {{ user.username }}
+                    </span>
+
+                    <a href="{% url 'logout' %}" class="btn btn-outline-airbnb btn-sm">
+                        Sair
+                    </a>
+
+                    {% else %}
+
+                    <a href="{% url 'login' %}" class="btn btn-outline-airbnb btn-sm">
+                        Entrar
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTEÚDO -->
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

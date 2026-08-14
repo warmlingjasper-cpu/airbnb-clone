@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+
+        <h1>Vou hospedar</h1>
+
+        <p class="text-muted">
+            Gerencie suas casas
+        </p>
+
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>Minhas casas</h2>
+
+        <a
+            href="{% url 'house_create' %}"
+            class="btn btn-airbnb"
+        >
+            + Adicionar casa
+        </a>
+
+    </div>
+
+
+    <div class="row">
+
+        {% for house in houses %}
+
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+
+                {% include "components/house_card.html" %}
+
+                <a
+                    href="{% url 'house_update' house.id %}"
+                    class="btn btn-outline-airbnb btn-sm mt-2 w-100"
+                >
+                    Editar
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <div class="text-center">
+
+                <p class="text-muted">
+                    Você ainda não cadastrou nenhuma casa.
+                </p>
+
+                <a
+                    href="{% url 'house_create' %}"
+                    class="btn btn-outline-airbnb"
+                >
+                    Adicionar minha primeira casa
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

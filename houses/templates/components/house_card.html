@@ -1,0 +1,36 @@
+<div class="house-card h-100">
+
+    {% if house.image %}
+    <div class="house-card-image">
+        <img src="{{ house.image.url }}" class="card-img-top" alt="{{ house.title }}">
+    </div>
+    {% endif %}
+
+    <div class="house-card-body">
+        <div class="house-card-header">
+
+            <h5 class="card-title">
+                {{ house.title }}
+            </h5>
+
+            <span class="house-card-rating">
+                <i class="bi bi-star-fill"></i>
+                {{ house.rating }}
+            </span>
+        </div>
+
+        <p class="house-card-location">
+            {{ house.location }}
+        </p>
+
+        <div class="house-card-price">
+            <strong>
+                {{ house.price }} €
+            </strong>
+            <span>/ night</span>
+        </div>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,341 @@
+/* ===== Search bar ===== */
+
+.search-bar {
+    max-width: 1050px;
+    height: 96px;
+
+    margin: 0 auto 60px;
+
+    display: flex;
+    align-items: center;
+
+    background: white;
+
+    border: 1px solid #dddddd;
+    border-radius: 48px;
+
+    padding: 7.5px;
+
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Cada seção */
+
+.search-item {
+    flex: 1;
+    height: 81px;
+
+    padding: 11px 27px;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-right: 1px solid #dddddd;
+}
+
+/* Título */
+
+.search-item label {
+    margin-bottom: 3px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #222;
+}
+
+/* Inputs */
+
+.search-item input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    padding: 0;
+
+    font-size: 20px;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+/* Remove aparência padrão do input */
+
+.search-item input::placeholder {
+    color: #717171;
+}
+
+/* Datas */
+
+.date-fields {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+.date-field {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.date-fields input {
+    width: 100%;
+
+    font-size: 12px;
+}
+
+.date-fields span {
+    font-size: 15px;
+    color: #717171;
+}
+
+.date-arrow {
+    color: #717171;
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+/* Botão */
+.search-button {
+    width: 75px !important;
+    height: 75px !important;
+
+    flex: 0 0 75px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 50% !important;
+
+    background: #FF385C !important;
+    color: white !important;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 26px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+    transition: all 0.2s ease;
+}
+
+.search-button:hover {
+    background: #E31C5F !important;
+
+    transform: scale(1.04);
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.search-button:active {
+    transform: scale(0.97);
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+    .search-bar {
+        border-radius: 20px;
+        flex-direction: column;
+        padding: 12px 5px;
+    }
+
+    .search-button {
+        margin-top: 10px;
+    }
+}
+
+/* Campo */
+
+.search-item {
+    flex: 1;
+
+    height: 54px;
+
+    padding: 8px 20px;
+
+    border-right: 1px solid #dddddd;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-airbnb {
+    background: #FF385C;
+    color: white;
+    border: none;
+}
+
+.btn-airbnb:hover {
+    background: #E31C5F;
+    color: white;
+}
+
+.btn.btn-outline-airbnb {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    background: white;
+    color: #FF385C;
+
+    border: 1px solid #FF385C;
+    border-radius: 10px;
+
+    padding: 9px 17px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.btn.btn-outline-airbnb:hover {
+    background: #FF385C;
+    color: white;
+    border-color: #FF385C;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================
+   HOUSE CARD
+========================= */
+
+.house-card {
+    background: white;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    transition: all 0.2s ease;
+}
+
+
+/* Hover */
+
+.house-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #d5d5d5;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+
+/* ==== IMAGE====== */
+
+.house-card-image {
+    width: 100%;
+    height: 220px;
+
+    overflow: hidden;
+}
+
+.house-card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.3s ease;
+}
+
+.house-card:hover .house-card-image img {
+    transform: scale(1.03);
+}
+
+/* ==== BODY ==== */
+
+.house-card-body {
+    padding: 14px 15px 16px;
+}
+
+
+
+/* ==== TITLE+ RATING ====== */
+
+.house-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.house-card-title {
+    margin: 0;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #222;
+}
+
+.house-card-rating {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    font-size: 13px;
+
+    color: #222;
+
+    white-space: nowrap;
+}
+
+.house-card-rating i {
+    font-size: 11px;
+}
+
+/* ==== LOCATION ====== */
+.house-card-location {
+    margin: 5px 0 12px;
+
+    font-size: 13px;
+
+    color: #717171;
+}
+
+
+/* ==== PRICE====== */
+
+.house-card-price {
+    font-size: 14px;
+
+    color: #222;
+}
+
+.house-card-price strong {
+    font-weight: 600;
+}
+
+.house-card-price span {
+    color: #555;
+}
