@@ -6,10 +6,10 @@
 
     <div class="text-center mb-4">
 
-        <h1>Vou hospedar</h1>
+        <h1>Host</h1>
 
         <p class="text-muted">
-            Gerencie suas casas
+            Manage your places.
         </p>
 
     </div>
@@ -17,13 +17,13 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Minhas casas</h2>
+        <h1>My Places</h1>
 
         <a
             href="{% url 'house_create' %}"
             class="btn btn-airbnb"
         >
-            + Adicionar casa
+            + Add place
         </a>
 
     </div>
@@ -41,7 +41,7 @@
                     href="{% url 'house_update' house.id %}"
                     class="btn btn-outline-airbnb btn-sm mt-2 w-100"
                 >
-                    Editar
+                    Edit
                 </a>
 
             </div>
@@ -51,14 +51,14 @@
             <div class="text-center">
 
                 <p class="text-muted">
-                    Você ainda não cadastrou nenhuma casa.
+                    You still do not have places registereds.
                 </p>
 
                 <a
                     href="{% url 'house_create' %}"
                     class="btn btn-outline-airbnb"
                 >
-                    Adicionar minha primeira casa
+                    Register my first place.
                 </a>
 
             </div>

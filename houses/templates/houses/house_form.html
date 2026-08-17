@@ -13,12 +13,15 @@
                 <div class="card-body p-4">
 
                     <h1 class="h3 mb-1">
-                        Adicionar casa
+                        Regiser place
                     </h1>
 
                     <p class="text-muted mb-4">
-                        Cadastre sua acomodação para receber hóspedes.
+                        Register now your place and starting receiving new guests.
                     </p>
+
+
+                    <!-- MAIN FORM -->
 
                     <form method="POST" enctype="multipart/form-data">
 
@@ -32,19 +35,77 @@
                                 href="{% url 'host' %}"
                                 class="btn btn-outline-airbnb"
                             >
-                                Cancelar
+                                Cancel
                             </a>
 
                             <button
                                 type="submit"
                                 class="btn btn-airbnb"
                             >
-                                Salvar casa
+                                Save place
                             </button>
 
                         </div>
 
                     </form>
+
+
+                    <!-- CURRENT PHOTOS -->
+
+                    {% if house %}
+
+                        <div class="mt-4">
+
+                            <h5 class="mb-3">
+                                Current photos
+                            </h5>
+
+                            <div class="row g-3">
+
+                                {% for image in house.images.all %}
+
+                                    <div class="col-md-4">
+
+                                        <div class="card">
+
+                                            <img
+                                                src="{{ image.image.url }}"
+                                                class="card-img-top"
+                                                style="height: 180px; object-fit: cover;"
+                                            >
+
+                                            <div class="card-body p-2">
+
+                                                <form
+                                                    method="POST"
+                                                    action="{% url 'house_image_delete' image.pk %}"
+                                                    onsubmit="return confirm('Delete this photo?');"
+                                                >
+
+                                                    {% csrf_token %}
+
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-outline-danger btn-sm w-100"
+                                                    >
+                                                        🗑 Delete photo
+                                                    </button>
+
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
 
                 </div>
 

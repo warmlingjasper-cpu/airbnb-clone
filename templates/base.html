@@ -39,37 +39,57 @@
                 <!-- USUÁRIO -->
                 <div>
 
-                    {% if request.resolver_match.url_name == "host" %}
+                    {% if request.resolver_match.url_name == "host" or request.resolver_match.url_name == "host_reservations" %}
 
-                    <a href="{% url 'dashboard' %}" class="btn btn-outline-airbnb btn-sm me-3">
-                        <i class="bi bi-airplane"></i>
-                        Vou viajar
-                    </a>
+                        <a
+                            href="{% url 'dashboard' %}"
+                            class="btn btn-outline-airbnb btn-sm me-3"
+                        >
+                            <i class="bi bi-airplane"></i>
+                            Switch to travel
+                        </a>
 
                     {% else %}
 
-                    <a href="{% url 'host' %}" class="btn btn-outline-airbnb btn-sm me-3">
-                        <i class="bi bi-house"></i>
-                        Vou hospedar
-                    </a>
+                        <a
+                            href="{% url 'host' %}"
+                            class="btn btn-outline-airbnb btn-sm me-3"
+                        >
+                            <i class="bi bi-house"></i>
+                            Switch to host
+                        </a>
 
                     {% endif %}
 
 
                     {% if user.is_authenticated %}
 
+                    {% if request.resolver_match.url_name == "host" %}
+
+                    <a href="{% url 'host_reservations' %}" class="btn btn-outline-airbnb btn-sm me-3">
+                        My Reservations
+                    </a>
+
+                    {% else %}
+
+                    <a href="{% url 'my_reservations' %}" class="btn btn-outline-airbnb btn-sm me-3">
+                        My Reservations
+                    </a>
+
+                    {% endif %}
+
                     <span class="me-3">
-                        Olá, {{ user.username }}
+                        Hi, {{ user.username }}
                     </span>
 
                     <a href="{% url 'logout' %}" class="btn btn-outline-airbnb btn-sm">
-                        Sair
+                        Logout
                     </a>
 
                     {% else %}
 
                     <a href="{% url 'login' %}" class="btn btn-outline-airbnb btn-sm">
-                        Entrar
+                        Login
                     </a>
 
                     {% endif %}

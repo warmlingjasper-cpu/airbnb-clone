@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-7">
+            {% if house.image %}
+                <img
+                    src="{{ house.image.url }}"
+                    class="img-fluid rounded"
+                    alt="{{ house.title }}"
+                >
+            {% endif %}
+
+            <h1 class="mt-4">
+                {{ house.title }}
+            </h1>
+
+            <p class="text-muted">
+                {{ house.location }}
+            </p>
+
+            <p>
+                {{ house.rating }}
+            </p>
+
+            <p>
+                {{ house.description }}
+            </p>
+
+            <p>
+                <strong>{{ house.price }}</strong>/night
+            </p>
+
+        </div>
+
+        <div class="col-md-5">
+            <div class="card p-4 shadow-sm">
+                <h3 class="mb-4">
+                    Reserve this place
+                </h3>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if form.non_field_errors %}
+
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger w-100"
+                    >
+                    Reserve
+                    </button>
+                
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

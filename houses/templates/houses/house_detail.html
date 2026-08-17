@@ -4,21 +4,46 @@
 
 <div class="container mt-4">
 
-    <div class="row">
+    <!-- Gallery -->
+    <div class="house-gallery mb-5">
 
-        <div class="col-md-7">
+        <div class="house-gallery-main">
 
             {% if house.image %}
-                <img
-                    src="{{ house.image.url }}"
-                    class="img-fluid rounded"
-                    alt="{{ house.title }}"
-                >
+
+            <img id="main-house-image" src="{{ house.image.url }}" alt="{{ house.title }}">
+
             {% endif %}
+
+
+            <!-- Previous button -->
+            <button type="button" class="gallery-arrow gallery-arrow-left" onclick="previousImage()">
+                &#10094;
+            </button>
+
+
+            <!-- Next button -->
+            <button type="button" class="gallery-arrow gallery-arrow-right" onclick="nextImage()">
+                &#10095;
+            </button>
+
+
+            <!-- Counter -->
+            <div class="gallery-counter">
+                <span id="image-counter">1</span> /
+                <span id="image-total">1</span>
+            </div>
 
         </div>
 
-        <div class="col-md-5">
+    </div>
+
+
+    <!-- House information -->
+
+    <div class="row">
+
+        <div class="col-md-7">
 
             <h1>{{ house.title }}</h1>
 
@@ -30,10 +55,6 @@
                 ⭐ {{ house.rating }}
             </p>
 
-            <h3>
-                {{ house.price }} € / night
-            </h3>
-
             <hr>
 
             <p>
@@ -42,8 +63,96 @@
 
         </div>
 
+
+        <div class="col-md-5">
+
+            <h3>
+                {{ house.price }} € / night
+            </h3>
+
+
+            {% if user.is_authenticated and user != house.owner %}
+
+            <a href="{% url 'house_reserve' house.pk %}" class="btn btn-danger w-100 mt-3">
+                Reserve
+            </a>
+
+            {% elif not user.is_authenticated %}
+
+            <a href="{% url 'log' %}?next={% url 'house_reserve' house.pk %}" class="btn btn-danger w-100 mt-3">
+                Login to reserve
+            </a>
+
+            {% endif %}
+
+        </div>
+
     </div>
 
 </div>
+
+<script>
+
+    const houseImages = [
+
+        {% if house.image %}
+    "{{ house.image.url }}",
+        {% endif %}
+
+    {% for extra_image in house.images.all %}
+    "{{ extra_image.image.url }}",
+        {% endfor %}
+
+    ];
+
+
+    let currentImage = 0;
+
+
+    const mainImage = document.getElementById("main-house-image");
+    const imageCounter = document.getElementById("image-counter");
+    const imageTotal = document.getElementById("image-total");
+
+
+    imageTotal.textContent = houseImages.length;
+
+
+    function showImage(index) {
+
+        currentImage = index;
+
+        mainImage.src = houseImages[currentImage];
+
+        imageCounter.textContent = currentImage + 1;
+
+    }
+
+
+    function nextImage() {
+
+        currentImage++;
+
+        if (currentImage >= houseImages.length) {
+            currentImage = 0;
+        }
+
+        showImage(currentImage);
+
+    }
+
+
+    function previousImage() {
+
+        currentImage--;
+
+        if (currentImage < 0) {
+            currentImage = houseImages.length - 1;
+        }
+
+        showImage(currentImage);
+
+    }
+
+</script>
 
 {% endblock %}

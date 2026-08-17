@@ -1,4 +1,5 @@
-/* ===== Search bar ===== */
+
+/* Search bar */
 
 .search-bar {
     max-width: 1050px;
@@ -219,9 +220,7 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* =========================
-   HOUSE CARD
-========================= */
+/* HOUSE CARD */
 
 .house-card {
     background: white;
@@ -245,8 +244,8 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
 }
 
+/* IMAGE */
 
-/* ==== IMAGE====== */
 
 .house-card-image {
     width: 100%;
@@ -270,15 +269,14 @@
     transform: scale(1.03);
 }
 
-/* ==== BODY ==== */
+/* BODY */
 
 .house-card-body {
     padding: 14px 15px 16px;
 }
 
 
-
-/* ==== TITLE+ RATING ====== */
+/* TITLE+ RATING */
 
 .house-card-header {
     display: flex;
@@ -314,7 +312,9 @@
     font-size: 11px;
 }
 
-/* ==== LOCATION ====== */
+
+/* LOCATION */
+
 .house-card-location {
     margin: 5px 0 12px;
 
@@ -323,8 +323,8 @@
     color: #717171;
 }
 
+/* PRICE */
 
-/* ==== PRICE====== */
 
 .house-card-price {
     font-size: 14px;
@@ -338,4 +338,156 @@
 
 .house-card-price span {
     color: #555;
+}
+
+/* House gallery */
+
+
+.house-gallery {
+    width: 100%;
+    height: 500px;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+.house-gallery-main {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.house-gallery-main img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: opacity 0.2s ease;
+}
+
+/* GALLERY ARROWS */
+
+
+.gallery-arrow {
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: #222;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.2s ease;
+
+    z-index: 10;
+}
+
+
+.gallery-arrow:hover {
+    background: white;
+
+    transform: translateY(-50%) scale(1.05);
+}
+
+
+.gallery-arrow-left {
+    left: 18px;
+}
+
+
+.gallery-arrow-right {
+    right: 18px;
+}
+
+/* IMAGE COUNTER */
+
+.gallery-counter {
+    position: absolute;
+
+    bottom: 18px;
+    right: 18px;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: white;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    z-index: 10;
+}
+
+/* Responsive search bar */
+@media (max-width: 900px) {
+
+    .search-bar {
+        width: 90%;
+        height: auto;
+        min-height: 96px;
+        flex-wrap: wrap;
+    }
+
+    .search-field {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 15px;
+        border-radius: 24px;
+    }
+
+    .search-field {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding: 5px 10px 15px;
+    }
+
+    .search-field:last-of-type {
+        border-bottom: none;
+    }
+
+    .search-button {
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+    }
 }

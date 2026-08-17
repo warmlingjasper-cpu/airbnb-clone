@@ -6,10 +6,10 @@
 
     <div class="text-center mb-4">
 
-        <h1>Vou viajar</h1>
+        <h1>Travel</h1>
 
         <p class="text-muted">
-            Encontre o lugar perfeito para sua próxima viagem.
+            Find the perfect place for your next destination.
         </p>
 
     </div>
@@ -21,9 +21,9 @@
 
         <div class="search-item">
 
-            <label>Onde</label>
+            <label>Where</label>
 
-            <input type="text" name="location" placeholder="Para onde vai?" value="{{ request.GET.location }}">
+            <input type="text" name="location" placeholder="Where are you going?" value="{{ request.GET.location }}">
 
         </div>
 
@@ -32,7 +32,7 @@
 
         <div class="search-item search-dates">
 
-            <label>Quando</label>
+            <label>When</label>
 
             <div class="date-fields">
                 <div class="date-field">
@@ -57,9 +57,9 @@
 
         <div class="search-item">
 
-            <label>Quem</label>
+            <label>Who</label>
 
-            <input type="number" name="guests" min="1" placeholder="Adicionar hóspedes"
+            <input type="number" name="guests" min="1" placeholder="Select guests"
                 value="{{ request.GET.guests }}">
 
         </div>
@@ -90,7 +90,7 @@
 
         {% empty %}
 
-        <p>Nenhuma casa cadastrada.</p>
+        <p>No places found.</p>
 
         {% endfor %}
 

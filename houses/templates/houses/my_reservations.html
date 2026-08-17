@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="mb-4">
+        My Reservations
+    </h1>
+
+    {% if reservations %}
+
+    <div class="row">
+        {% for reservation in reservations %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                {% if reservation.house.image %}
+
+                <img src="{{ reservation.house.image.url }}" class="card-img-top"
+                    style="height: 220px; object-fit: cover" ; alt="{{ reservation.house.title }}">
+                {% endif %}
+
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {{ reservation.house.title }}
+                    </h4>
+
+                    <p class="text-muted">
+                        {{ reservation.house.location }}
+                    </p>
+
+                    <hr>
+                    <p class="mb-2">
+                        <strong>Check-in:</strong>
+                        {{ reservation.check_in|date:"d/m/Y" }}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Check-out:</strong>
+                        {{ reservation.check_out|date:"d/m/Y" }}
+                    </p>
+
+                    {% if mode == "host" %}
+
+                        <p class="mb-2">
+                            <strong>Guest:</strong>
+                            {{ reservation.guest.username }}
+                        </p>
+
+                        <p class="mb-2">
+                            <strong>Guests:</strong>
+                            {{ reservation.guests }}
+                        </p>
+                    {% endif %}
+
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        {{ reservation.get_status_display }}
+                    </p>
+
+                    <p>
+                        <strong>Nights:</strong>
+                        {{ reservation.nights }}
+                    </p>
+
+                    <p>
+                        <strong>Total:</strong>
+                        {{ reservation.total_price }}€
+                    </p>
+
+                    <a href="{% url 'house_detail' reservation.house.pk %}" class="btn btn-outline-airbnb w-100">
+                        View house
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="text-center mt-5">
+        <h3>
+            No reservations yet
+        </h3>
+        <p class="text-muted">
+            Your reservations will appear here.
+        </p>
+
+        <a href="{% url 'home' %}" class="btn btn-outline-airbnb">
+            Explore houses
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
